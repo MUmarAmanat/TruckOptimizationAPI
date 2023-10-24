@@ -20,6 +20,15 @@ class Input(BaseModel):
     numberOfTrucksPerType: List[int]
 
 
+@app.get("/")
+def home_page():
+    """
+    Description: Homepage function
+    Parameters: None
+    Return: Message (String)
+    """
+    return "Welcome! Perform a POST request on /run/ path. Or enter http://<public-ip:port>/docs"
+
 @app.post("/run/")
 def call_funct(input: Input):
     """
@@ -52,7 +61,3 @@ def call_funct(input: Input):
     # Solve the problem
     solution = solver.getSolution()
     return json.dumps(solution)
-
-
-if __name__ == '__main__':
-    uvicorn.run('main:app', host='0.0.0.0', port=80)
